@@ -53,8 +53,8 @@ void SoundManager::SoundNewGO(int a)
 
 void SoundManager::SoundDeleteGO(int a)
 {
-	if (sound[a]) {
+	if (this != nullptr)
+	{
 		DeleteGO(sound[a]);
-		sound[a] = nullptr;
 	}
 }
