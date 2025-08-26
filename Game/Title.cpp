@@ -5,16 +5,16 @@
 
 namespace
 {
-	const wchar_t* FONT_TEXT = L"PUSU(A)";
-	const Vector3 FONT_POSITION = { 500.0f,0.0f,0.0f };
-	const float FONT_SCALE = 1.0f;
-	const Vector4 FONT_COLOR = { 0.0f,0.0f,0.0f,1.0f };
+	const wchar_t* FONT_TEXT = L"PUSU(A)";				// 表示するテキスト。
+	const Vector3 FONT_POSITION = { 500.0f,0.0f,0.0f };	// フォント位置。
+	const float FONT_SCALE = 1.0f;						// フォントサイズ。
+	const Vector4 FONT_COLOR = { 0.0f,0.0f,0.0f,1.0f };	// フォントカラー。
 
-	const float ALPHA_MIN = 0.3f;
-	const float ALPHA_MAX = 1.0f;
+	const float ALPHA_MIN = 0.3f;						// 最低透明度。
+	const float ALPHA_MAX = 1.0f;						// 最高透明度。
 
-	const float ALPHA_BLINK_DURATION = 0.05f;
-	const float ALPHA_FADE_DURATION = 0.5f;
+	const float ALPHA_BLINK_DURATION = 0.05f;			// 点滅速度。
+	const float ALPHA_FADE_DURATION = 0.5f;				// フェード速度。
 }
 
 Title::~Title()
@@ -40,6 +40,7 @@ bool Title::Start()
 
 void Title::Update()
 {
+	// Xボタンを押したらゲーム開始。
 	if (g_pad[0]->IsTrigger(enButtonX))
 	{
 		m_isStart = true;
@@ -47,6 +48,7 @@ void Title::Update()
 		NewGO<Game>(0, "game");
 	}
 
+	// ゲーム開始から2秒後にタイトルを削除。
 	if (m_isStart)
 	{
 		m_gameStartDelay += g_gameTime->GetFrameDeltaTime();
@@ -67,6 +69,7 @@ void Title::Render(RenderContext& rc)
 
 void Title::PlayFontAnimation()
 {
+	// スタートしたら高速で点滅させる。
 	if (m_isStart)
 	{
 		m_alphaEffectDuration = ALPHA_BLINK_DURATION;

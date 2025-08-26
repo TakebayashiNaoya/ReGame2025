@@ -10,6 +10,9 @@
 
 namespace
 {
+	/// <summary>
+	/// アイテムの位置。
+	/// </summary>
 	const Vector3 ITEM_POSITIONS[] =
 	{
 		{ 0.0f,25.0f,1100.0f },
@@ -19,7 +22,7 @@ namespace
 		{ 0.0f,-380.0f,6500.0f }
 	};
 
-	const float FALL_DEATH_HEIGHT = -1500.0f;
+	const float FALL_DEATH_HEIGHT = -1500.0f;	// 落下時ゲームオーバーになる高さ。
 }
 
 Game::~Game()
@@ -73,8 +76,8 @@ bool Game::Start()
 
 void Game::Update()
 {
-	OnGameClear();
-	OnGameOver();
+	IsGameClear();
+	IsGameOver();
 }
 
 void Game::InitSky()
@@ -100,7 +103,7 @@ void Game::SpawnStars()
 	}
 }
 
-void Game::OnGameClear()
+void Game::IsGameClear()
 {
 	if (m_starSum == m_itemGetCount)
 	{
@@ -109,7 +112,7 @@ void Game::OnGameClear()
 	}
 }
 
-void Game::OnGameOver()
+void Game::IsGameOver()
 {
 	if (m_player->GetPosition().y < FALL_DEATH_HEIGHT)
 	{
