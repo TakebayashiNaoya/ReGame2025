@@ -86,7 +86,7 @@ private:
 	Vector3 forward = Vector3::Zero;
 	Vector3 right = Vector3::Zero;
 
-	int m_animState = 0;
-	int m_jumpState = 0;
+	int m_animState = 0;	// アニメーションのステートを格納する変数。
+	int m_jumpState = 0;	// ジャンプのステートを格納する変数。
 };
 

@@ -6,7 +6,8 @@
 
 namespace
 {
-	const float ITEM_DELETE_LENGTH = 120.0f;
+	const float ITEM_ROTATION_SPEED = 2.0f;		// アイテムの回転速度。
+	const float ITEM_DELETE_LENGTH = 120.0f;	// アイテムを削除するプレイヤーとアイテムの距離。
 }
 
 bool Item::Start()
@@ -35,7 +36,7 @@ void Item::Render(RenderContext& rc)
 
 void Item::Rotation()
 {
-	m_rotation.AddRotationDegY(2.0f);
+	m_rotation.AddRotationDegY(ITEM_ROTATION_SPEED);
 	m_modelRender.SetRotation(m_rotation);
 }
 

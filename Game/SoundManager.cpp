@@ -3,33 +3,42 @@
 
 namespace
 {
-	const char* SOUND_FILE_PATH = "Assets/sound/";	// サウンドのファイルパス。
+	std::string SOUND_FILE_PATH = "Assets/sound/";	// サウンドのファイルパス。
+	std::string SOUND_EXTENSION = ".wav";			// アニメーションの拡張子。
 
+	/// <summary>
+	/// サウンドファイルの再生オプションを表す構造体。
+	/// </summary>
 	struct SoundOption
 	{
 		const char* fileName;	// 再生したいファイルの名前。
 		bool repeat = false;	// リピートするかどうか。（true=する、false=しない）
 		float volume = 0.0f;	// 音量。
 
-		// サウンドのファイルパスと各サウンドのファイル名を結合して返す。
+		/// <summary>
+		/// サウンドファイルのフルパスを取得します。
+		/// </summary>
 		std::string GetFullPath() const
 		{
-			return std::string(SOUND_FILE_PATH) + fileName;
+			return SOUND_FILE_PATH + fileName + SOUND_EXTENSION;
 		}
 	};
 
+	/// <summary>
+	/// サウンドオプションの配列。
+	/// </summary>
 	const SoundOption SOUND_OPTIONS[] =
 	{
-		{ "title.wav", true, 1.0f },
-		{ "inGame.wav", true, 1.0f },
-		{ "gameClear.wav", true, 1.0f },
-		{ "gameOver.wav", true, 1.0f },
-		{ "push.wav", false, 3.5f },
-		{ "countDownStart.wav", false, 3.5f },
-		{ "jump.wav", false, 3.5f },
-		{ "star.wav", false, 3.5f },
-		{ "end.wav", false, 3.5f },
-		{ "call.wav", false, 3.5f },
+		{ "title", true, 1.0f },
+		{ "inGame", true, 1.0f },
+		{ "gameClear", true, 1.0f },
+		{ "gameOver", true, 1.0f },
+		{ "push", false, 3.5f },
+		{ "countDownStart", false, 3.5f },
+		{ "jump", false, 3.5f },
+		{ "star", false, 3.5f },
+		{ "end", false, 3.5f },
+		{ "call", false, 3.5f },
 	};
 }
 

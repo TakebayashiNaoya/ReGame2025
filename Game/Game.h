@@ -12,6 +12,9 @@ class GameCamera;
 class Game : public IGameObject
 {
 private:
+	/// <summary>
+	/// NewGOのフレーム処理用のenum。
+	/// </summary>
 	enum EnInitPhase
 	{
 		enInitPhase_First,
@@ -21,7 +24,7 @@ private:
 		enInitPhase_Fifth,
 		enInitPhase_Sixth,
 	};
-	int m_initPhase = 0;
+	int m_initPhase = 0; // フレーム処理の段階を格納する変数。
 
 public:
 	~Game();
@@ -52,22 +55,22 @@ private:
 	/// ゲームクリアの処理です。
 	/// アイテムを全て取得したらゲームクリア。
 	/// </summary>
-	void OnGameClear();
+	void IsGameClear();
 
 	/// <summary>
 	/// ゲームオーバーの処理です。
 	/// 一定の高さまで落下したらゲームオーバー。
 	/// </summary>
-	void OnGameOver();
+	void IsGameOver();
 
 	BackGround* m_backGround = nullptr;
 	Player* m_player = nullptr;
 	GameCamera* m_gameCamera = nullptr;
 
-	int m_itemGetCount = 0;
-	int m_starSum = 0;
+	int m_itemGetCount = 0;	// アイテムの取得数を格納する変数。
+	int m_starSum = 0;		// アイテムの生成数を格納する変数。
 
-	SkyCube* m_skyCube = nullptr;		//スカイキューブ。
+	SkyCube* m_skyCube = nullptr;
 	Vector3 m_skyCubePos = Vector3::Zero;
 	int m_skyCubeType = enSkyCubeType_Day;
 };

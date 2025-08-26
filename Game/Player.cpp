@@ -4,37 +4,44 @@
 
 namespace
 {
-	const char* ANIMATION_FILE_PATH = "Assets/animData/";
+	std::string ANIMATION_FILE_PATH = "Assets/animData/";	// アニメーションのファイルパス。
+	std::string ANIMATION_EXTENSION = ".tka";				// アニメーションの拡張子。
 
-	const float DASH_SPEED = 300.0f;
-	const float WALK_SPEED = 150.0f;
-	const float JUMP_POWER = 240.0f;
-	const float GRAVITY_POWER = 3.0f;
-	const float INPUT_DEADZONE_THRESHOLD = 0.001f;
+	const float CHARACTER_CONTROLLER_SCALE_RADIUS = 25.0f;	// キャラクターコントローラーの半径。
+	const float CHARACTER_CONTROLLER_SCALE_HEIGHT = 75.0f;	// キャラクターコントローラーの高さ。
+
+	const float DASH_SPEED = 300.0f;						// ダッシュスピード。
+	const float WALK_SPEED = 150.0f;						// 歩くスピード。
+	const float JUMP_POWER = 240.0f;						// ジャンプパワー。
+	const float GRAVITY_POWER = 3.0f;						// 重力。
+	const float INPUT_DEADZONE_THRESHOLD = 0.001f;			// スティック入力検知の基準値。
 
 	/// <summary>
-	/// アニメーションファイルのオプションを管理する構造体です。
+	/// アニメーションファイルのオプションを管理する構造体。
 	/// </summary>
 	struct AnimationOption
 	{
 		const char* fileName;	// ファイルパス。
 		bool is_loop = false;	// リピートするかどうか。（true=する、false=しない）
 
+		/// <summary>
+		/// アニメーションファイルのフルパスを取得します。
+		/// </summary>
 		std::string GetFullPath() const
 		{
-			return std::string(ANIMATION_FILE_PATH) + fileName;
+			return ANIMATION_FILE_PATH + fileName + ANIMATION_EXTENSION;
 		}
 	};
 
 	/// <summary>
-	/// アニメーションのオプションを定義する定数配列です。
+	/// アニメーションのオプションを定義する定数配列。
 	/// </summary>
 	const AnimationOption ANIMATION_OPTIONS[] =
 	{
-		{"idle.tka",true},
-		{"walk.tka",true},
-		{"run.tka",true},
-		{"jump.tka",false}
+		{"idle",true},	// 待機アニメーション。
+		{"walk",true},	// 歩きアニメーション。
+		{"run",true},	// 走りアニメーション。
+		{"jump",false}	// ジャンプアニメーション。
 	};
 }
 
@@ -44,7 +51,7 @@ bool Player::Start()
 
 	m_modelRender.Init("Assets/modelData/unityChan.tkm", m_animationClips, enAnimationClip_Num, enModelUpAxisY);
 
-	m_characterController.Init(25.0f, 75.0f, m_position);
+	m_characterController.Init(CHARACTER_CONTROLLER_SCALE_RADIUS, CHARACTER_CONTROLLER_SCALE_HEIGHT, m_position);
 
 	return true;
 }
