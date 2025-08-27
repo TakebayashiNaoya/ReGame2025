@@ -26,6 +26,11 @@ void GameCamera::Update()
 	//パッドの入力を使ってカメラを回す。
 	float x = g_pad[0]->GetRStickXF();
 	float y = g_pad[0]->GetRStickYF();
+
+	// カメラを回さないように。
+	x = 0.0f;
+	y = 0.0f;
+
 	//Y軸周りの回転
 	Quaternion qRot;
 	qRot.SetRotationDeg(Vector3::AxisY, 1.3f * x);

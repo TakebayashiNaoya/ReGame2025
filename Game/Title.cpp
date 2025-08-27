@@ -5,9 +5,9 @@
 
 namespace
 {
-	const wchar_t* FONT_TEXT = L"PUSU(A)";				// 表示するテキスト。
-	const Vector3 FONT_POSITION = { 500.0f,0.0f,0.0f };	// フォント位置。
-	const float FONT_SCALE = 1.0f;						// フォントサイズ。
+	const wchar_t* FONT_TEXT = L"PUSH(A)";				// 表示するテキスト。
+	const Vector3 FONT_POSITION = { 300.0f,-150.0f,0.0f };	// フォント位置。
+	const float FONT_SCALE = 3.0f;						// フォントサイズ。
 	const Vector4 FONT_COLOR = { 0.0f,0.0f,0.0f,1.0f };	// フォントカラー。
 
 	const float ALPHA_MIN = 0.3f;						// 最低透明度。
